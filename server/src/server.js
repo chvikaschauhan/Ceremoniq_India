@@ -7,7 +7,7 @@ import customizePackageRouter from "./routes/customizePackage.js";
 import ordersRouter from "./routes/orders.js";
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
