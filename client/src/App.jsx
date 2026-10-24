@@ -55,11 +55,12 @@ function GiftWizard({ onBrowseCatalog }) {
   const [error, setError] = useState("");
 
   const selectOption = (key, title) => setSelections((current) => ({ ...current, [key]: title }));
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001";
   const getRecommendations = async () => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("/api/recommendations", {
+      const response = await fetch(`${API_BASE_URL}/api/recommendations`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
