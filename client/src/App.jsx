@@ -179,24 +179,13 @@ function readCart() {
   try { const saved = JSON.parse(localStorage.getItem("ceremoniq-cart") || "[]"); return Array.isArray(saved) ? saved : []; }
   catch { return []; }
 }
- function App() {
+
+export default function App() {
   const [view, setView] = useState("home");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [savedCustomization, setSavedCustomization] = useState(null);
   const [cart, setCart] = useState(readCart);
   const [placedOrder, setPlacedOrder] = useState(null);
-  // useEffect(() => {
-  //   // Agar aapne Vite proxy set ki hai toh seedha "/api/test" likhein, 
-  //   // nahi toh pura URL "http://localhost:5000/api/test" likhein
-  //   fetch('/api/test')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log("🟢 FRONTEND CONSOLE - Success:", data);
-  //     })
-  //     .catch((err) => {
-  //       console.error("🔴 FRONTEND CONSOLE - Connection Failed:", err);
-  //     });
-  // }, []);
   useEffect(() => { localStorage.setItem("ceremoniq-cart", JSON.stringify(cart)); }, [cart]);
   const navigate = (nextView) => { setView(nextView); window.scrollTo({ top: 0, behavior: "smooth" }); };
   const openCustomizer = (product) => { setSelectedProduct(product); setSavedCustomization(null); setView("customize"); window.scrollTo({ top: 0, behavior: "smooth" }); };
@@ -232,5 +221,3 @@ function readCart() {
     </div>
   );
 }
-
-export default App;
